@@ -15,5 +15,14 @@ module.exports = function (defaults) {
   */
 
   const { maybeEmbroider } = require('@embroider/test-setup');
-  return maybeEmbroider(app);
+  return maybeEmbroider(app, {
+    // Workaround for IE 11
+    // https://github.com/embroider-build/embroider/issues/677
+    // https://github.com/embroider-build/embroider/issues/731#issuecomment-808788950
+    skipBabel: [
+      {
+        package: 'qunit',
+      },
+    ],
+  });
 };
