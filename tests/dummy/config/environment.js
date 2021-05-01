@@ -21,6 +21,12 @@ module.exports = function (environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
+
+    emberConfigCat: {
+      sdkKey: 'SDK_KEY',
+      mode: 'auto',
+      autoStart: false,
+    },
   };
 
   if (environment === 'development') {
