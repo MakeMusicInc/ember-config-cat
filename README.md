@@ -6,12 +6,15 @@
 
 This addon includes a service which wraps a [ConfigCat](https://configcat.com/) client and aims at easing any feature flagging in your applications.
 
-## Feature set/TODO
+## Feature set
 
-- [ ] A service self-injecting in routes and controllers, in charge of creating the ConfigCat client and to observe feature-flags changes
-- [ ] Adding an auto-start option (in case you want to user authentication to be done be initializing and fetching flags)
-- [ ] Opinionated: all feature-flags are fetched at the same time
-- [ ] Opinionated: the same user traits will be used during the session
+- [x] A service in charge of creating the ConfigCat client and to observe feature-flags changes
+- [x] Adding an auto-start option (in case you want to user authentication to be done be initializing and fetching flags)
+- [x] Opinionated: all feature-flags are fetched at the same time
+- [x] Opinionated: the same user traits will be used during the session
+
+## TODO
+
 - [ ] Local/offline mode
 - [ ] Ability to provide default values for feature-flags
 - [ ] Template Helper
@@ -28,6 +31,124 @@ This addon includes a service which wraps a [ConfigCat](https://configcat.com/) 
 ```
 ember install ember-config-cat
 ```
+
+## Usage
+
+### Options
+
+```js
+# environment.js
+
+module.exports = function (environment) {
+  let ENV = {
+    emberConfigCat: {
+      // your options goes here
+    }
+  };
+};
+```
+
+| Option                   | Default    | Description                                                   | Links                                                                  |
+| ------------------------ | ---------- | ------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `mode`                   | `'auto'`   | Polling mode: `'auto'`/`'lazy'`/`'manual'`                    | [🔗](https://configcat.com/docs/sdk-reference/js#polling-modes)        |
+| `local`                  | `false`    | Enabling local mode: will only use default flag values        | -                                                                      |
+| `sdkKey`                 | –          | Your SDK Key                                                  | [🔗](https://app.configcat.com/sdkkey)                                 |
+| `requestTimeoutMs`       | `30000`    | Amount of time the SDK waits before returning cached values   | [🔗](https://configcat.com/docs/sdk-reference/js#auto-polling-default) |
+| `maxInitWaitTimeSeconds` | `5`        | Maximum waiting time between client init and config fetch     | [🔗](https://configcat.com/docs/sdk-reference/js#auto-polling-default) |
+| `pollIntervalSeconds`    | `60`       | Polling interval                                              | [🔗](https://configcat.com/docs/sdk-reference/js#auto-polling-default) |
+| `cacheTimeToLiveSeconds` | `60`       | Cache TTL                                                     | [🔗](https://configcat.com/docs/sdk-reference/js#lazy-loading)         |
+| `dataGovernance`         | `'Global'` | Determine the CDN location of the data: `'Global'`/`'EuOnly'` | [🔗](https://configcat.com/docs/advanced/data-governance)              |
+
+- `requestTimeoutMs` and `dataGovernance` are common polling options to the three available modes
+- All default values except `mode`, `local` and `autoStart` are defined in the ConfigCat SDK
+- You may define either `local` or `sdkKey` but the addon will fallback to `local` mode if no `sdkKey` is provided.
+
+### Initializing the client
+
+#### Without user identification
+
+```js
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+
+export default class WhateverRoute extends Route {
+  @service configCat;
+
+  beforeModel() {
+    return this.configCat.initClient();
+  }
+}
+```
+
+#### With user identification
+
+A ConfigCat user object is made of four properties (identifier, email, country and custom): [structure](https://configcat.com/docs/advanced/user-object#user-objects-structure)
+Calling `.identifyUser()` will initialize the client if needed.
+
+```js
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+
+export default class WhateverRoute extends Route {
+  @service configCat;
+
+  async model() {
+    const user = this.authenticate();
+    await this.configCat.identifyUser({
+      identifier: user.id,
+      email: user.email,
+    });
+  }
+}
+```
+
+### Using feature-flag values
+
+```js
+import Component from '@glimmer/component';
+import { inject as service } from '@ember/service';
+
+export default class WhateverComponent extends Component {
+  @service configCat;
+
+  get isEnabled() {
+    return this.configCat.flags.isAwesomeFeatureEnabled;
+  }
+}
+```
+
+```hbs
+{{#if this.isEnabled}}
+  Enabled
+{{else}}
+  Disabled
+{{/if}}
+```
+
+### Clearing data
+
+```js
+import Component from '@glimmer/component';
+import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
+
+export default class WhateverComponent extends Component {
+  @service configCat;
+
+  @action onClear() {
+    this.configCat.dispose();
+  }
+}
+```
+
+### Public methods and properties
+
+| Name           | Type             | Description                                         |
+| -------------- | ---------------- | --------------------------------------------------- |
+| `flags`        | tracked property | Returns available feature-flags and values          |
+| `identifyUser` | method           | Identifies user and update feature-flags values     |
+| `update`       | method           | Updates feature-flags values                        |
+| `dispose`      | method           | Releases everything related to the ConfigCat client |
 
 ## Contributing
 
