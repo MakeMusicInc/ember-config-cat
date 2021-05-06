@@ -12,13 +12,13 @@ This addon includes a service which wraps a [ConfigCat](https://configcat.com/) 
 - [x] Adding an auto-start option (in case you want to user authentication to be done be initializing and fetching flags)
 - [x] Opinionated: all feature-flags are fetched at the same time
 - [x] Opinionated: the same user traits will be used during the session
+- [x] Local mode
+- [x] Test Helper
 
 ## TODO
 
-- [ ] Local/offline mode
 - [ ] Ability to provide default values for feature-flags
 - [ ] Template Helper
-- [ ] Test Helper
 
 ## Compatibility
 
@@ -52,6 +52,7 @@ module.exports = function (environment) {
 | ------------------------ | ---------- | ------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `mode`                   | `'auto'`   | Polling mode: `'auto'`/`'lazy'`/`'manual'`                    | [🔗](https://configcat.com/docs/sdk-reference/js#polling-modes)        |
 | `local`                  | `false`    | Enabling local mode: will only use default flag values        | -                                                                      |
+| `flags`                  | -          | Default values for feature-flags                              | -                                                                      |
 | `sdkKey`                 | –          | Your SDK Key                                                  | [🔗](https://app.configcat.com/sdkkey)                                 |
 | `requestTimeoutMs`       | `30000`    | Amount of time the SDK waits before returning cached values   | [🔗](https://configcat.com/docs/sdk-reference/js#auto-polling-default) |
 | `maxInitWaitTimeSeconds` | `5`        | Maximum waiting time between client init and config fetch     | [🔗](https://configcat.com/docs/sdk-reference/js#auto-polling-default) |
