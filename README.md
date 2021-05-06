@@ -151,6 +151,30 @@ export default class WhateverComponent extends Component {
 | `update`       | method           | Updates feature-flags values                        |
 | `dispose`      | method           | Releases everything related to the ConfigCat client |
 
+## Testing
+
+`ember-config-cat` comes with a couple of test-helpers:
+
+```js
+// ...
+import { setupConfigCat } from 'ember-config-cat/test-support';
+
+module('...', function (hooks) {
+  // ...
+  setupConfigCat(hooks);
+
+  test('...', async function (assert) {
+    // configuring one flag
+    this.withFlag('featureA', true);
+
+    // configuring several flags
+    this.withFlags({ featureB: true, pricing: 10 });
+
+    // ...
+  });
+});
+```
+
 ## Contributing
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
