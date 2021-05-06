@@ -23,9 +23,14 @@ module.exports = function (environment) {
     },
 
     emberConfigCat: {
-      sdkKey: 'SDK_KEY',
-      mode: 'auto',
-      autoStart: false,
+      sdkKey: process.env.CONFIG_CAT_KEY || 'SDK_KEY',
+      mode: 'lazy',
+      local: false,
+      flags: {
+        isAwesomeFeatureEnabled: true,
+        number: 40,
+        textsetting: 'not production',
+      },
     },
   };
 
