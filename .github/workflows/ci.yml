@@ -34,6 +34,8 @@ on:
   push:
     branches:
       - main
+    tags:
+      - '*'
   pull_request:
 
 env:
@@ -220,3 +222,20 @@ jobs:
       env:
         EMBER_TRY_SCENARIO: ${{ matrix.ember-try-scenario }}
       run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
+
+
+  publish:
+    name: Publish to NPM
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: [lint, test,floating-dependencies, try-scenarios]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '${{ env.NODE_VERSION }}'
+        registry-url: 'https://registry.npmjs.org'
+    - run: npm install
+    - run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
