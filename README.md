@@ -157,13 +157,13 @@ export default class WhateverComponent extends Component {
 
 ```js
 // ...
-import { setupConfigCat } from 'ember-config-cat/test-support';
+import { setupConfigCat, TestContext } from 'ember-config-cat/test-support';
 
 module('...', function (hooks) {
   // ...
   setupConfigCat(hooks);
 
-  test('...', async function (assert) {
+  test('...', async function (this: TestContext, assert) {
     // configuring one flag
     this.withFlag('featureA', true);
 

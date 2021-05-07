@@ -1,1 +1,1 @@
-export { setupConfigCat } from './setupConfigCat';
+export { setupConfigCat, TestContext } from './setupConfigCat';

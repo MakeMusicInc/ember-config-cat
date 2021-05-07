@@ -3,7 +3,7 @@ import Service from '@ember/service';
 
 export type Flags = Record<string, boolean | number | string>;
 
-interface TestContext extends BasicTestContext {
+export interface TestContext extends BasicTestContext {
   withFlag(key: string, value: unknown): void;
   withFlags(flags: Flags): void;
 }
