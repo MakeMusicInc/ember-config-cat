@@ -24,7 +24,8 @@ module.exports = function (environment) {
 
     emberConfigCat: {
       sdkKey: process.env.CONFIG_CAT_KEY || 'SDK_KEY',
-      mode: 'lazy',
+      mode: 'auto',
+      pollIntervalSeconds: 15,
       local: false,
       flags: {
         isAwesomeFeatureEnabled: true,
@@ -52,6 +53,8 @@ module.exports = function (environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+
+    ENV.emberConfigCat.local = true;
   }
 
   if (environment === 'production') {

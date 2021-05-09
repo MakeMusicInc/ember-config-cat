@@ -14,11 +14,11 @@ This addon includes a service which wraps a [ConfigCat](https://configcat.com/) 
 - [x] Opinionated: the same user traits will be used during the session
 - [x] Local mode
 - [x] Test Helper
+- [x] Template Helper
 
 ## TODO
 
 - [ ] Ability to provide default values for feature-flags
-- [ ] Template Helper
 
 ## Compatibility
 
@@ -125,6 +125,14 @@ export default class WhateverComponent extends Component {
   Disabled
 {{/if}}
 ```
+
+### Template helpers
+
+| Name              | Parameters | Description                                                   |
+| ----------------- | ---------- | ------------------------------------------------------------- |
+| `is-flag-enabled` | key        | Checks if the flag is enabled                                 |
+| `get-flag-value`  | key        | Gets the current flag value                                   |
+| `has-flag-value`  | key, value | Compares the current flag value against a provided parameters |
 
 ### Clearing data
 
