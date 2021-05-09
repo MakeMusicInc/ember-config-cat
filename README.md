@@ -64,6 +64,20 @@ module.exports = function (environment) {
 - All default values except `mode`, `local` and `autoStart` are defined in the ConfigCat SDK
 - You may define either `local` or `sdkKey` but the addon will fallback to `local` mode if no `sdkKey` is provided.
 
+### Content Security Policy (CSP)
+
+If your app is using [ember-cli-content-security-policy](https://github.com/rwjblue/ember-cli-content-security-policy), you may need to add this into `environment.js` to allow ConfigCat requests.
+
+```js
+module.exports = function (environment) {
+  let ENV = {
+    contentSecurityPolicy: {
+      'connect-src': ['https://cdn-global.configcat.com'],
+    },
+  };
+};
+```
+
 ### Initializing the client
 
 #### Without user identification
