@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Value</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`is-flag-enabled`</td>
+      <td data-test="is-flag-enabled">{{if (is-flag-enabled key="isAwesomeFeatureEnabled") "Hello, world!"}}
+    </td>
+    </tr>
+    <tr>
+      <td>`get-flag-value`</td>
+      <td data-test="get-flag-value">{{get-flag-value key="number"}}</td>
+    </tr>
+    <tr>
+      <td>`has-flag-value`</td>
+      <td data-test="has-flag-value">
+        {{#if (has-flag-value key="textsetting" value="not production")}}
+          Developing
+        {{else}}
+          Production
+        {{/if}}
+      </td>
+    </tr>
+  </tbody>
+</table>
