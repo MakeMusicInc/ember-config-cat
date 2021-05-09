@@ -60,7 +60,7 @@ export default class ConfigCat extends Service {
 
   @tracked flags: Flags = {};
 
-  private getAddOptions() {
+  private getAddonOptions() {
     const { emberConfigCat } = getOwner(this).resolveRegistration(
       'config:environment'
     );
@@ -107,7 +107,7 @@ export default class ConfigCat extends Service {
     }
 
     const { mode, local, flags, sdkKey, options } = this.getAddonConfig(
-      this.getAddOptions()
+      this.getAddonOptions()
     );
 
     if (local || !sdkKey) {
@@ -169,9 +169,14 @@ export default class ConfigCat extends Service {
     }
 
     const remoteValues = await this.#client.getAllValuesAsync(this.#targetUser);
-    remoteValues.forEach(({ settingKey, settingValue }) => {
-      this.flags[settingKey] = settingValue;
-    });
+
+    const newFlags = remoteValues.reduce(function (acc: Flags, current) {
+      const { settingKey, settingValue } = current;
+      acc[settingKey] = settingValue;
+      return acc;
+    }, {});
+
+    this.flags = newFlags;
   }
 }
 
