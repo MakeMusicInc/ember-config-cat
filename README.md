@@ -2,23 +2,7 @@
 
 ![Build](https://github.com/MakeMusicInc/ember-config-cat/actions/workflows/ci.yml/badge.svg?branch=main)
 
-⚠️ This addon is still under development.
-
 This addon includes a service which wraps a [ConfigCat](https://configcat.com/) client and aims at easing any feature flagging in your applications.
-
-## Feature set
-
-- [x] A service in charge of creating the ConfigCat client and to observe feature-flags changes
-- [x] Adding an auto-start option (in case you want to user authentication to be done be initializing and fetching flags)
-- [x] Opinionated: all feature-flags are fetched at the same time
-- [x] Opinionated: the same user traits will be used during the session
-- [x] Local mode
-- [x] Test Helper
-- [x] Template Helper
-
-## TODO
-
-- [ ] Ability to provide default values for feature-flags
 
 ## Compatibility
 
