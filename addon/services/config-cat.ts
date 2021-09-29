@@ -170,6 +170,8 @@ export default class ConfigCat extends Service {
 
     const remoteValues = await this.#client.getAllValuesAsync(this.#targetUser);
 
+    if (remoteValues.length <= 0) return;
+
     const newFlags = remoteValues.reduce(function (acc: Flags, current) {
       const { settingKey, settingValue } = current;
       acc[settingKey] = settingValue;
