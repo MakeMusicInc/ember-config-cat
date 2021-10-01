@@ -42,8 +42,9 @@ module.exports = async function () {
       {
         name: 'ember-canary',
         npm: {
-          resolutions: {
+          dependencies: {
             'ember-auto-import': '^2',
+            webpack: '^5.55.1',
           },
           devDependencies: {
             'ember-source': await getChannelURL('canary'),
