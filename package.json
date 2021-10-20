@@ -30,10 +30,12 @@
   },
   "dependencies": {
     "configcat-js": "^5.4.3",
-    "ember-auto-import": "^1.11.3",
+    "ember-auto-import": "^2.2.0",
     "ember-cli-babel": "^7.26.3",
     "ember-cli-htmlbars": "^5.7.1",
-    "ember-cli-typescript": "^4.1.0"
+    "ember-cli-typescript": "^4.1.0",
+    "webpack": "^5.55.1",
+    "wepack": "^0.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
