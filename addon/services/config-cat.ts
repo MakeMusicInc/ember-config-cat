@@ -12,7 +12,7 @@ import {
 import { createLocalClient } from './-private/local';
 import { tracked } from '@glimmer/tracking';
 import { IConfigCatClient, DataGovernance } from 'configcat-common';
-import { getOwner } from '@ember/application';
+import { getOwnConfig } from '@embroider/macros';
 
 enum PollModes {
   auto = 'auto',
@@ -41,6 +41,10 @@ interface EnvOptions {
   cacheTimeToLiveSeconds?: number;
 }
 
+type OwnConfig = Record<string, unknown> & {
+  configCatConfig: EnvOptions;
+};
+
 interface AddonOptions {
   mode: PollMode;
   local: boolean;
@@ -59,13 +63,6 @@ export default class ConfigCat extends Service {
   #targetUser: TargetUser | undefined;
 
   @tracked flags: Flags = {};
-
-  private getAddonOptions() {
-    const { emberConfigCat } = getOwner(this).resolveRegistration(
-      'config:environment'
-    );
-    return emberConfigCat;
-  }
 
   getAddonConfig(envOptions: EnvOptions): AddonOptions {
     const mode = envOptions.mode || PollModes.auto;
@@ -107,7 +104,7 @@ export default class ConfigCat extends Service {
     }
 
     const { mode, local, flags, sdkKey, options } = this.getAddonConfig(
-      this.getAddonOptions()
+      getOwnConfig<OwnConfig>().configCatConfig
     );
 
     if (local || !sdkKey) {
@@ -170,7 +167,9 @@ export default class ConfigCat extends Service {
 
     const remoteValues = await this.#client.getAllValuesAsync(this.#targetUser);
 
-    if (remoteValues.length <= 0) return;
+    if (remoteValues.length <= 0) {
+      return;
+    }
 
     const newFlags = remoteValues.reduce(function (acc: Flags, current) {
       const { settingKey, settingValue } = current;
