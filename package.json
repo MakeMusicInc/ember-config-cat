@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@embroider/macros": "^0.47.0",
+    "configcat-common": "^4.5.0",
     "configcat-js": "^5.4.3",
     "ember-auto-import": "^2.2.0",
     "ember-cli-babel": "^7.26.3",
