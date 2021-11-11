@@ -1,5 +1,6 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
+import { createConsoleLogger } from 'configcat-js';
 
 module('Unit | Service | config-cat', function (hooks) {
   setupTest(hooks);
@@ -94,5 +95,47 @@ module('Unit | Service | config-cat', function (hooks) {
       dataGovernance: 'Global',
       maxInitWaitTimeSeconds: 300,
     });
+  });
+
+  test('it returns a config with a disabled logger', function (assert) {
+    const logLevel = -1;
+    const service = this.owner.lookup('service:config-cat');
+    const config = service.getAddonConfig({
+      logLevel,
+    });
+    assert.deepEqual(config.options.logger, createConsoleLogger(logLevel));
+  });
+
+  test('it returns a config with a logger set at info level', function (assert) {
+    const logLevel = 3;
+    const service = this.owner.lookup('service:config-cat');
+    const config = service.getAddonConfig({
+      logLevel,
+    });
+    assert.deepEqual(config.options.logger, createConsoleLogger(logLevel));
+  });
+
+  test('it returns a config with a logger set at warn level', function (assert) {
+    const logLevel = 2;
+    const service = this.owner.lookup('service:config-cat');
+    const config = service.getAddonConfig({
+      logLevel,
+    });
+    assert.deepEqual(config.options.logger, createConsoleLogger(logLevel));
+  });
+
+  test('it returns a config with a logger set at error level', function (assert) {
+    const logLevel = 1;
+    const service = this.owner.lookup('service:config-cat');
+    const config = service.getAddonConfig({
+      logLevel,
+    });
+    assert.deepEqual(config.options.logger, createConsoleLogger(logLevel));
+  });
+
+  test('it returns a config without logger', function (assert) {
+    const service = this.owner.lookup('service:config-cat');
+    const config = service.getAddonConfig({});
+    assert.strictEqual(config.options.logger, undefined);
   });
 });
