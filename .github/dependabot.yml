@@ -12,4 +12,4 @@ updates:
       time: "07:00"
     versioning-strategy: lockfile-only
     allow:
-      - dependency-name: "configcat-js"
+      - dependency-name: "configcat-*"
