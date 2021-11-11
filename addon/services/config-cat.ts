@@ -3,6 +3,7 @@ import {
   IJSAutoPollOptions,
   IJSLazyLoadingOptions,
   IJSManualPollOptions,
+  createConsoleLogger,
 } from 'configcat-js';
 import {
   createClientWithAutoPoll,
@@ -11,7 +12,7 @@ import {
 } from './-private/remote';
 import { createLocalClient } from './-private/local';
 import { tracked } from '@glimmer/tracking';
-import { IConfigCatClient, DataGovernance } from 'configcat-common';
+import { IConfigCatClient, DataGovernance, LogLevel } from 'configcat-common';
 import { getOwnConfig } from '@embroider/macros';
 
 enum PollModes {
@@ -35,6 +36,7 @@ interface EnvOptions {
   flags?: Flags;
   sdkKey?: string;
   requestTimeoutMs?: number;
+  logLevel?: LogLevel;
   dataGovernance?: DataGovernance;
   maxInitWaitTimeSeconds?: number;
   pollIntervalSeconds?: number;
@@ -68,6 +70,7 @@ export default class ConfigCat extends Service {
     const mode = envOptions.mode || PollModes.auto;
     const local = envOptions.local || !envOptions.sdkKey;
     const flags = envOptions.flags || {};
+    const logLevel = envOptions.logLevel;
 
     const options = {
       ...(envOptions.requestTimeoutMs && {
@@ -87,6 +90,9 @@ export default class ConfigCat extends Service {
         envOptions.pollIntervalSeconds && {
           pollIntervalSeconds: envOptions.pollIntervalSeconds,
         }),
+      ...(logLevel && {
+        logger: createConsoleLogger(logLevel),
+      }),
     };
 
     return {

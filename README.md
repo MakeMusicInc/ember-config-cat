@@ -43,6 +43,7 @@ module.exports = function (environment) {
 | `pollIntervalSeconds`    | `60`       | Polling interval                                              | [🔗](https://configcat.com/docs/sdk-reference/js#auto-polling-default) |
 | `cacheTimeToLiveSeconds` | `60`       | Cache TTL                                                     | [🔗](https://configcat.com/docs/sdk-reference/js#lazy-loading)         |
 | `dataGovernance`         | `'Global'` | Determine the CDN location of the data: `'Global'`/`'EuOnly'` | [🔗](https://configcat.com/docs/advanced/data-governance)              |
+| `logLevel`               | -          | Set a custom log level                                        | [🔗](https://configcat.com/docs/sdk-reference/js/#logging)             |
 
 - `requestTimeoutMs` and `dataGovernance` are common polling options to the three available modes
 - All default values except `mode`, `local` and `autoStart` are defined in the ConfigCat SDK
