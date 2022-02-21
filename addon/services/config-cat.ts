@@ -63,10 +63,9 @@ export default class ConfigCat extends Service {
   @tracked flags: Flags = {};
 
   private getAddonOptions() {
-    const { emberConfigCat } = getOwner(this).resolveRegistration(
-      'config:environment'
-    );
-    return emberConfigCat;
+    // @ts-ignore getOwner is not typed
+    const config = getOwner(this).resolveRegistration('config:environment');
+    return config.emberConfigCat || {};
   }
 
   getAddonConfig(envOptions: EnvOptions): AddonOptions {
