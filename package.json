@@ -29,7 +29,6 @@
     "postpack": "ember ts:clean"
   },
   "dependencies": {
-    "@embroider/macros": "^1.1.0",
     "configcat-common": "^4.6.2",
     "configcat-js": "^5.7.2",
     "ember-auto-import": "^2.4.0",

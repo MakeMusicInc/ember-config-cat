@@ -13,7 +13,7 @@ import {
 import { createLocalClient } from './-private/local';
 import { tracked } from '@glimmer/tracking';
 import { IConfigCatClient, DataGovernance, LogLevel } from 'configcat-common';
-import { getOwnConfig } from '@embroider/macros';
+import { getOwner } from '@ember/application';
 
 enum PollModes {
   auto = 'auto',
@@ -43,10 +43,6 @@ interface EnvOptions {
   cacheTimeToLiveSeconds?: number;
 }
 
-type OwnConfig = Record<string, unknown> & {
-  configCatConfig: EnvOptions;
-};
-
 interface AddonOptions {
   mode: PollMode;
   local: boolean;
@@ -65,6 +61,13 @@ export default class ConfigCat extends Service {
   #targetUser: TargetUser | undefined;
 
   @tracked flags: Flags = {};
+
+  private getAddonOptions() {
+    const { emberConfigCat } = getOwner(this).resolveRegistration(
+      'config:environment'
+    );
+    return emberConfigCat;
+  }
 
   getAddonConfig(envOptions: EnvOptions): AddonOptions {
     const mode = envOptions.mode || PollModes.auto;
@@ -110,7 +113,7 @@ export default class ConfigCat extends Service {
     }
 
     const { mode, local, flags, sdkKey, options } = this.getAddonConfig(
-      getOwnConfig<OwnConfig>().configCatConfig
+      this.getAddonOptions()
     );
 
     if (local || !sdkKey) {
