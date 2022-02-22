@@ -32,18 +32,18 @@ module.exports = function (environment) {
 };
 ```
 
-| Option                   | Default    | Description                                                   | Links                                                                  |
-| ------------------------ | ---------- | ------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `mode`                   | `'auto'`   | Polling mode: `'auto'`/`'lazy'`/`'manual'`                    | [🔗](https://configcat.com/docs/sdk-reference/js#polling-modes)        |
-| `local`                  | `false`    | Enabling local mode: will only use default flag values        | -                                                                      |
-| `flags`                  | -          | Default values for feature-flags                              | -                                                                      |
-| `sdkKey`                 | –          | Your SDK Key                                                  | [🔗](https://app.configcat.com/sdkkey)                                 |
-| `requestTimeoutMs`       | `30000`    | Amount of time the SDK waits before returning cached values   | [🔗](https://configcat.com/docs/sdk-reference/js#auto-polling-default) |
-| `maxInitWaitTimeSeconds` | `5`        | Maximum waiting time between client init and config fetch     | [🔗](https://configcat.com/docs/sdk-reference/js#auto-polling-default) |
-| `pollIntervalSeconds`    | `60`       | Polling interval                                              | [🔗](https://configcat.com/docs/sdk-reference/js#auto-polling-default) |
-| `cacheTimeToLiveSeconds` | `60`       | Cache TTL                                                     | [🔗](https://configcat.com/docs/sdk-reference/js#lazy-loading)         |
-| `dataGovernance`         | `'Global'` | Determine the CDN location of the data: `'Global'`/`'EuOnly'` | [🔗](https://configcat.com/docs/advanced/data-governance)              |
-| `logLevel`               | -          | Set a custom log level                                        | [🔗](https://configcat.com/docs/sdk-reference/js/#logging)             |
+| Option                   | Default      | Description                                                             | Links                                                                  |
+| ------------------------ | ------------ | ----------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `mode`                   | `'auto'`     | Polling mode: `'auto'`/`'lazy'`/`'manual'`                              | [🔗](https://configcat.com/docs/sdk-reference/js#polling-modes)        |
+| `local`                  | `false`      | Enabling local mode: will only use default flag values                  | -                                                                      |
+| `flags`                  | -            | Default values for feature-flags                                        | -                                                                      |
+| `sdkKey`                 | –            | Your SDK Key                                                            | [🔗](https://app.configcat.com/sdkkey)                                 |
+| `requestTimeoutMs`       | `30000`      | Amount of time the SDK waits before returning cached values             | [🔗](https://configcat.com/docs/sdk-reference/js#auto-polling-default) |
+| `maxInitWaitTimeSeconds` | `5`          | Maximum waiting time between client init and config fetch               | [🔗](https://configcat.com/docs/sdk-reference/js#auto-polling-default) |
+| `pollIntervalSeconds`    | `60`         | Polling interval                                                        | [🔗](https://configcat.com/docs/sdk-reference/js#auto-polling-default) |
+| `cacheTimeToLiveSeconds` | `60`         | Cache TTL                                                               | [🔗](https://configcat.com/docs/sdk-reference/js#lazy-loading)         |
+| `dataGovernance`         | `0` (Global) | Determine the CDN location of the data: `0` for Global / `1` for EuOnly | [🔗](https://configcat.com/docs/advanced/data-governance)              |
+| `logLevel`               | -            | Set a custom log level                                                  | [🔗](https://configcat.com/docs/sdk-reference/js/#logging)             |
 
 - `requestTimeoutMs` and `dataGovernance` are common polling options to the three available modes
 - All default values except `mode`, `local` and `autoStart` are defined in the ConfigCat SDK

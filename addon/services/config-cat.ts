@@ -73,14 +73,13 @@ export default class ConfigCat extends Service {
     const local = envOptions.local || !envOptions.sdkKey;
     const flags = envOptions.flags || {};
     const logLevel = envOptions.logLevel;
+    const dataGovernance = envOptions.dataGovernance || DataGovernance.Global;
 
     const options = {
       ...(envOptions.requestTimeoutMs && {
         requestTimeoutMs: envOptions.requestTimeoutMs,
       }),
-      ...(envOptions.dataGovernance && {
-        dataGovernance: envOptions.dataGovernance,
-      }),
+      dataGovernance,
       ...(envOptions.maxInitWaitTimeSeconds && {
         maxInitWaitTimeSeconds: envOptions.maxInitWaitTimeSeconds,
       }),

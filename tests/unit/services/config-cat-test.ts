@@ -19,6 +19,22 @@ module('Unit | Service | config-cat', function (hooks) {
     assert.strictEqual(config.mode, 'auto');
   });
 
+  test('it returns a config with the provided data governance Global setting', function (assert) {
+    const service = this.owner.lookup('service:config-cat') as ConfigCat;
+    const config = service.getAddonConfig({
+      dataGovernance: DataGovernance.Global,
+    });
+    assert.strictEqual(config.options?.dataGovernance, DataGovernance.Global);
+  });
+
+  test('it returns a config with the provided data governance EuOnly setting', function (assert) {
+    const service = this.owner.lookup('service:config-cat') as ConfigCat;
+    const config = service.getAddonConfig({
+      dataGovernance: DataGovernance.EuOnly,
+    });
+    assert.strictEqual(config.options?.dataGovernance, DataGovernance.EuOnly);
+  });
+
   test('it returns a config with the provided mode', function (assert) {
     const service = this.owner.lookup('service:config-cat') as ConfigCat;
     const config = service.getAddonConfig({ mode: 'lazy' });
@@ -39,8 +55,12 @@ module('Unit | Service | config-cat', function (hooks) {
 
   test('it returns a config with a default empty poll options config', function (assert) {
     const service = this.owner.lookup('service:config-cat') as ConfigCat;
-    const config = service.getAddonConfig({});
-    assert.deepEqual(config.options, {});
+    const config = service.getAddonConfig({
+      dataGovernance: DataGovernance.Global,
+    });
+    assert.deepEqual(config.options, {
+      dataGovernance: DataGovernance.Global,
+    });
   });
 
   test('it returns a config with a filtered poll options config in lazy mode', function (assert) {
