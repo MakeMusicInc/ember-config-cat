@@ -4037,12 +4037,17 @@ configcat-common@^4.6.2:
   resolved "https://registry.yarnpkg.com/configcat-common/-/configcat-common-4.6.2.tgz#ef37114cf77c10378e686078bc45903508e0ed49"
   integrity sha512-o7qp5xb3K9w3tL0dK0g2/IwzOym4SOcdl+Hgh7d1125fKamDk8Jg6nBb+jEkA0qs0msYI+kpcL7pEsihYUhEDg==
 
+configcat-common@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/configcat-common/-/configcat-common-5.0.1.tgz#c53566f4d19d6a7bd4abe6d723f110204308a137"
+  integrity sha512-5V9Y+lm/9Ee3nlHK6B0USEGNmAayJ33QBHRmzh0pPed0AZA483bFKhHf6BNyn+lpvMZKH8zIqWn/F2Mq+bLqGQ==
+
 configcat-js@^5.7.2:
-  version "5.7.2"
-  resolved "https://registry.yarnpkg.com/configcat-js/-/configcat-js-5.7.2.tgz#2466269f941c8564c0d2670ffbc74dc0657f1450"
-  integrity sha512-Pvryi3y1z1ZyhId5fGv6Weel6YU6EuTHHYdfY1SOaVSvNeXNU9HwLpzMUCwdINtSXyxtHd0xUMumRUje2h7/Ng==
+  version "5.7.3"
+  resolved "https://registry.yarnpkg.com/configcat-js/-/configcat-js-5.7.3.tgz#1e3e48cb3a10206cdd87e3e01c66ae52f7dc7aa8"
+  integrity sha512-OXJN5TLQVhgYjKwvNciTV2OoYKZKsCwIlXDzVafw5iR3F9egMYW3LSfkGlZAkfbeOKcNA3kqy/TRSY7C+jnsdA==
   dependencies:
-    configcat-common "^4.6.2"
+    configcat-common "^5.0.1"
 
 configstore@^5.0.1:
   version "5.0.1"
