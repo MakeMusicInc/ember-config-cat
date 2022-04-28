@@ -4032,15 +4032,10 @@ concat-stream@^1.5.0:
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
 
-configcat-common@^4.6.2:
-  version "4.6.2"
-  resolved "https://registry.yarnpkg.com/configcat-common/-/configcat-common-4.6.2.tgz#ef37114cf77c10378e686078bc45903508e0ed49"
-  integrity sha512-o7qp5xb3K9w3tL0dK0g2/IwzOym4SOcdl+Hgh7d1125fKamDk8Jg6nBb+jEkA0qs0msYI+kpcL7pEsihYUhEDg==
-
-configcat-common@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/configcat-common/-/configcat-common-5.0.1.tgz#c53566f4d19d6a7bd4abe6d723f110204308a137"
-  integrity sha512-5V9Y+lm/9Ee3nlHK6B0USEGNmAayJ33QBHRmzh0pPed0AZA483bFKhHf6BNyn+lpvMZKH8zIqWn/F2Mq+bLqGQ==
+configcat-common@^5.0.1, configcat-common@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/configcat-common/-/configcat-common-5.0.2.tgz#24ae7184fda04dd16e5ab126e8807af931e32a87"
+  integrity sha512-mw9Ny21Nw5OnpfZmy+Xb/rHlqhAvTxeWAcoF3VuPJbBKsZVLZt8bRgu533mZ3FNXMwpEkJsTBHBWHPqPgh6EHw==
 
 configcat-js@^5.7.2:
   version "5.7.3"
