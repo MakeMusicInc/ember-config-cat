@@ -4033,9 +4033,9 @@ concat-stream@^1.5.0:
     typedarray "^0.0.6"
 
 configcat-common@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/configcat-common/-/configcat-common-5.0.2.tgz#24ae7184fda04dd16e5ab126e8807af931e32a87"
-  integrity sha512-mw9Ny21Nw5OnpfZmy+Xb/rHlqhAvTxeWAcoF3VuPJbBKsZVLZt8bRgu533mZ3FNXMwpEkJsTBHBWHPqPgh6EHw==
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/configcat-common/-/configcat-common-5.1.0.tgz#045f122511b194c36bc214ab1c780f50721bdd73"
+  integrity sha512-/oT/Kl+PL9kw56Nki96z4pfd3yGA/3TFGja9WHFpSLrXyO2N6t1g5EwZ6IYzlsz7sfD7ByDBqj4sDs1MngQvcg==
 
 configcat-js@^5.7.2:
   version "5.7.4"
