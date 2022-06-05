@@ -1,4 +1,4 @@
-import Application from 'dummy/app';
+import Application from 'test-app/app';
 import config from 'dummy/config/environment';
 import * as QUnit from 'qunit';
 import { setApplication } from '@ember/test-helpers';

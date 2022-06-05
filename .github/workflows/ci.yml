@@ -22,12 +22,16 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v3
         with:
-          node-version: 12.x
+          node-version: lts/*
           cache: yarn
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
-      - name: Lint
+      - name: Lint Addon
         run: yarn lint
+        working-directory: addon
+      - name: Lint Test App
+        run: yarn lint
+        working-directory: test-app
       - name: Run Tests
         run: yarn test:ember
 
@@ -39,7 +43,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 12.x
+          node-version: lts/*
           cache: yarn
       - name: Install Dependencies
         run: yarn install --no-lockfile
