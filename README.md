@@ -194,6 +194,7 @@ We draw our inspiration from the `ember-launch-darkly` [addon](https://github.co
 
 - [ConfigCat API](https://api.configcat.com/docs)
 - Using ConfigCat in JavaScript [Documentation](https://configcat.com/docs/sdk-reference/js) - [SDK](https://github.com/configcat/js-sdk)
+- [Browser compatibility](https://configcat.com/docs/sdk-reference/js/#browser-compatibility)
 
 ## License
 
