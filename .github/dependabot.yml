@@ -10,6 +10,6 @@ updates:
     schedule:
       interval: "weekly"
       time: "07:00"
-    versioning-strategy: lockfile-only
+    versioning-strategy: increase-if-necessary
     allow:
       - dependency-name: "configcat-*"
