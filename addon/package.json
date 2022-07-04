@@ -1,0 +1,65 @@
+{
+  "name": "ember-config-cat",
+  "version": "1.1.0",
+  "description": "Ember addon to wrap a ConfigCat client.",
+  "keywords": [
+    "ember-addon",
+    "config-cat"
+  ],
+  "repository": "https://github.com/MakeMusicInc/ember-config-cat",
+  "license": "MIT",
+  "author": "",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "rollup --config",
+    "prepublishOnly": "rollup --config",
+    "start": "rollup --config --watch",
+    "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
+    "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
+    "lint:hbs": "ember-template-lint .",
+    "lint:hbs:fix": "ember-template-lint . --fix",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "lint:types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@embroider/addon-shim": "^1.8.0",
+    "configcat-common": "^5.0.2",
+    "configcat-js": "^5.7.2",
+    "ember-cli-typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": "12.* || 14.* || >= 16"
+  },
+  "ember": {
+    "edition": "octane"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@babel/plugin-proposal-class-properties": "^7.17.12",
+    "@babel/plugin-proposal-decorators": "^7.18.2",
+    "@embroider/addon-dev": "^1.8.0",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-typescript": "^8.3.3",
+    "rollup": "^2.75.7"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": "./dist/*",
+    "./test-support": "./dist/test-support/index.js",
+    "./addon-main.js": "./addon-main.js"
+  },
+  "files": [
+    "addon-main.js",
+    "dist"
+  ],
+  "ember-addon": {
+    "main": "addon-main.js",
+    "type": "addon",
+    "version": 2,
+    "app-js": {}
+  }
+}
