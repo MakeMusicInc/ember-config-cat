@@ -40,12 +40,16 @@ export function setupConfigCat(hooks: NestedHooks): void {
     this.owner.register('service:config-cat', MockConfigCat);
 
     this.withFlag = (key: string, value: boolean | number | string) => {
-      const service = this.owner.lookup('service:config-cat') as MockConfigCat;
+      const service = this.owner.lookup(
+        'service:config-cat'
+      ) as unknown as MockConfigCat;
       service.setFlag(key, value);
     };
 
     this.withFlags = (flags: Flags) => {
-      const service = this.owner.lookup('service:config-cat') as MockConfigCat;
+      const service = this.owner.lookup(
+        'service:config-cat'
+      ) as unknown as MockConfigCat;
       service.setFlags(flags);
     };
   });
