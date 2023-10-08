@@ -1,4 +1,4 @@
-import { Flags } from '../services/config-cat';
+import type { Flags } from '../services/config-cat.ts';
 
 class LocalFactory {
   #flags: {

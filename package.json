@@ -5,29 +5,20 @@
   "license": "MIT",
   "author": "",
   "scripts": {
-    "prepare": "yarn workspace ember-config-cat run prepare",
-    "start": "npm-run-all --parallel start:*",
+    "build": "yarn workspace ember-config-cat run build",
+    "lint": "yarn workspaces run lint",
+    "lint:fix": "yarn workspaces run lint:fix",
+    "prepare": "yarn build",
+    "start": "concurrently 'npm:start:*' --restart-after 5000 --prefix-colors cyan,white,yellow",
     "start:addon": "yarn workspace ember-config-cat run start",
     "start:test-app": "yarn workspace test-app run start",
-    "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
-    "lint:addon": "yarn workspace ember-config-cat run lint",
-    "lint:test-app": "yarn workspace test-app run lint",
-    "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:fix:*",
-    "lint:fix:addon": "yarn workspace ember-config-cat run lint:fix",
-    "lint:fix:test-app": "yarn workspace test-app run lint:fix",
-    "test": "npm-run-all --aggregate-output --continue-on-error --parallel \"test:!(watch)\"",
-    "test:watch": "npm-run-all --aggregate-output --continue-on-error --parallel test:watch:*",
-    "test:test-app": "yarn workspace test-app run test",
-    "test:watch:test-app": "yarn workspace test-app run test:watch",
-    "test:watch:addon": "yarn workspace ember-config-cat run start"
+    "test": "yarn workspaces run test",
+    "test:ember": "yarn workspace test-app run test:ember"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.47.1",
-    "@typescript-eslint/parser": "^5.47.1",
-    "concurrently": "^7.6.0",
-    "eslint": "^7.32.0",
-    "prettier": "^2.8.1",
-    "typescript": "~4.7.0"
+    "concurrently": "^8.2.0",
+    "prettier": "^3.0.3",
+    "prettier-plugin-ember-template-tag": "^1.1.0"
   },
   "workspaces": [
     "ember-config-cat",

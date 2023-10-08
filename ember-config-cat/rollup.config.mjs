@@ -1,4 +1,5 @@
-import typescript from 'rollup-plugin-ts';
+import { babel } from '@rollup/plugin-babel';
+import copy from 'rollup-plugin-copy';
 import { Addon } from '@embroider/addon-dev/rollup';
 
 const addon = new Addon({
@@ -19,35 +20,33 @@ export default {
       'services/**/*.ts',
       'index.ts',
       'test-support.ts',
+      'template-registry.ts',
     ]),
 
     // These are the modules that should get reexported into the traditional
     // "app" tree. Things in here should also be in publicEntrypoints above, but
     // not everything in publicEntrypoints necessarily needs to go here.
-    addon.appReexports(['helpers/**/*.js', 'services/**/*.js']),
-
-    typescript({
-      transpiler: 'babel',
-      browserslist: false,
-      transpileOnly: false,
-      tsconfig: {
-        fileName: 'tsconfig.json',
-        hook: (config) => ({
-          ...config,
-          declaration: true,
-          declarationMap: true,
-          // See: https://devblogs.microsoft.com/typescript/announcing-typescript-4-5/#beta-delta
-          // Allows us to use `exports` to define types per export
-          // However, we can't use that feature until the minimum supported TS is 4.7+
-          declarationDir: './dist',
-        }),
-      },
-    }),
+    addon.appReexports([
+      'helpers/**/*.js',
+      'services/**/*.js',
+      'utils/**/*.js',
+    ]),
 
     // Follow the V2 Addon rules about dependencies. Your code can import from
     // `dependencies` and `peerDependencies` as well as standard Ember-provided
     // package names.
     addon.dependencies(),
+
+    // This babel config should *not* apply presets or compile away ES modules.
+    // It exists only to provide development niceties for you, like automatic
+    // template collocation.
+    //
+    // By default, this will load the actual babel config from the file
+    // babel.config.json.
+    babel({
+      extensions: ['.js', '.gjs', '.ts', '.gts'],
+      babelHelpers: 'bundled',
+    }),
 
     // Ensure that standalone .hbs files are properly integrated as Javascript.
     addon.hbs(),
@@ -58,5 +57,13 @@ export default {
 
     // Remove leftover build artifacts when starting a new build.
     addon.clean(),
+
+    // Copy Readme and License into published package
+    copy({
+      targets: [
+        { src: '../README.md', dest: '.' },
+        { src: '../LICENSE.md', dest: '.' },
+      ],
+    }),
   ],
 };
