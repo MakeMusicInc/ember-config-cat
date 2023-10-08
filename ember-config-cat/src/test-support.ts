@@ -1,3 +1,4 @@
+import 'ember-qunit';
 import { TestContext as BasicTestContext } from '@ember/test-helpers';
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
@@ -41,14 +42,14 @@ export function setupConfigCat(hooks: NestedHooks): void {
 
     this.withFlag = (key: string, value: boolean | number | string) => {
       const service = this.owner.lookup(
-        'service:config-cat'
+        'service:config-cat',
       ) as unknown as MockConfigCat;
       service.setFlag(key, value);
     };
 
     this.withFlags = (flags: Flags) => {
       const service = this.owner.lookup(
-        'service:config-cat'
+        'service:config-cat',
       ) as unknown as MockConfigCat;
       service.setFlags(flags);
     };

@@ -9,8 +9,8 @@ import {
   createClientWithAutoPoll,
   createClientWithLazyLoad,
   createClientWithManualPoll,
-} from '../utils/remote-client';
-import { createLocalClient } from '../utils/local-client';
+} from '../utils/remote-client.ts';
+import { createLocalClient } from '../utils/local-client.ts';
 import { tracked } from '@glimmer/tracking';
 import { IConfigCatClient, DataGovernance, LogLevel } from 'configcat-common';
 import { getOwner } from '@ember/application';
@@ -111,7 +111,7 @@ export default class ConfigCat extends Service {
     }
 
     const { mode, local, flags, sdkKey, options } = this.getAddonConfig(
-      this.getAddonOptions()
+      this.getAddonOptions(),
     );
 
     if (local || !sdkKey) {
@@ -129,7 +129,7 @@ export default class ConfigCat extends Service {
   private async initRemoteClient(
     mode: PollMode,
     sdkKey: string,
-    options?: IJSAutoPollOptions | IJSLazyLoadingOptions | IJSManualPollOptions
+    options?: IJSAutoPollOptions | IJSLazyLoadingOptions | IJSManualPollOptions,
   ) {
     switch (mode) {
       case PollModes.lazy:
