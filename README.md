@@ -164,7 +164,7 @@ export default class WhateverComponent extends Component {
 
 ```js
 // ...
-import { setupConfigCat, TestContext } from 'ember-config-cat/test-support';
+import { setupConfigCat, type TestContext } from 'ember-config-cat/test-support';
 
 module('...', function (hooks) {
   // ...

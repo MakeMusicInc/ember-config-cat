@@ -1,7 +1,10 @@
 import { module, test } from 'qunit';
 import { visit, settled } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
-import { setupConfigCat, TestContext } from 'ember-config-cat/test-support';
+import {
+  setupConfigCat,
+  type TestContext,
+} from 'ember-config-cat/test-support';
 
 module('Acceptance | helper', function (hooks) {
   setupApplicationTest(hooks);

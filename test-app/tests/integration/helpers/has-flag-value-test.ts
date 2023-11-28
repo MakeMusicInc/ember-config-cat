@@ -2,7 +2,10 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
-import { setupConfigCat, TestContext } from 'ember-config-cat/test-support';
+import {
+  setupConfigCat,
+  type TestContext,
+} from 'ember-config-cat/test-support';
 
 module('Integration | Helper | has-flag-value', function (hooks) {
   setupRenderingTest(hooks);
