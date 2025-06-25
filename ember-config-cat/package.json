@@ -46,7 +46,7 @@
     "@babel/plugin-syntax-decorators": "^7.17.0",
     "@babel/plugin-transform-class-static-block": "^7.20.0",
     "@babel/plugin-transform-typescript": "^7.22.15",
-    "@babel/runtime": "^7.17.0",
+    "@babel/runtime": "^7.26.10",
     "@embroider/addon-dev": "^4.1.0",
     "@glint/core": "^1.2.0",
     "@glint/environment-ember-loose": "^1.2.0",
@@ -84,7 +84,7 @@
     "eslint-plugin-n": "^16.1.0",
     "eslint-plugin-prettier": "^5.0.0",
     "prettier-plugin-ember-template-tag": "^1.1.0",
-    "rollup": "^3.21.8",
+    "rollup": "^3.29.5",
     "rollup-plugin-copy": "^3.4.0",
     "typescript": "^5.0.4"
   },
